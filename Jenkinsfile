@@ -2,7 +2,7 @@ pipeline{
   agent any
 
   environment {
-    TOMCAT_HOME
+    // TOMCAT_HOME
     TOMCAT_WEBAPPS_PATH="/home/user/Downloads/apache-tomcat-9.0.111/webapps"
   }
 
