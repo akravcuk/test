@@ -3,10 +3,8 @@ pipeline{
 
   environment {
     JAVA_VERSION_REQUIRED = "11"
-    JAVA_SERVLET_FILE_LOCATION = "./app/hello-tomcat/WEB-INF/classes"
-    JAVA_SERVLET_FILENAME = "HelloServlet.java"
-    JAVA_APP_WAR_FILENAME = "hello.war"
     TOMCAT_WEBAPPS_PATH="/var/lib/tomcat9/webapps"
+    SERVLET_FOLDER_NAME="hello"
   }
 
   stages {
@@ -36,20 +34,31 @@ pipeline{
       }
     }
 
-    stage('Build'){
+    // stage('Build'){
+    //   steps{
+    //     sh'''
+    //       echo "Compile"
+          
+    //       javac -cp "./app/javax.servlet-api-4.0.1.jar" "${JAVA_SERVLET_FILE_LOCATION}/${JAVA_SERVLET_FILENAME}"
+    //       if [ $? -ne 0 ]; then
+    //         echo "Compilation error"
+    //         exit 1
+    //       fi
+    //     '''
+    //   }
+    // }
+    stage('Deploy'){
       steps{
         sh'''
-          echo "Compile"
-          
-          javac -cp "./app/javax.servlet-api-4.0.1.jar" "${JAVA_SERVLET_FILE_LOCATION}/${JAVA_SERVLET_FILENAME}"
-          if [ $? -ne 0 ]; then
-            echo "Compilation error"
-            exit 1
-          fi
+          SERVLET_FULL_NAME="$TOMCAT_WEBAPPS_PATH/$SERVLET_FOLDER_NAME"
+          if [ -d "$SERVLET_FULL_NAME" ]; then
+            rm -rf $SERVLET_FULL_NAME" && mkdir $SERVLET_FULL_NAME"
+          else
+            mkdir $SERVLET_FULL_NAME
+            cp -r ./app/hello-tomcat/* $SERVLET_FULL_NAME/
         '''
       }
     }
-
     // stage('Deploy'){
     //   steps{
     //     sh'''
