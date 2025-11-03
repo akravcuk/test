@@ -6,7 +6,7 @@ pipeline{
     JAVA_SERVLET_FILE_LOCATION = "./app/hello-tomcat/WEB-INF/classes"
     JAVA_SERVLET_FILENAME = "HelloServlet.java"
     JAVA_APP_WAR_FILENAME = "hello.war"
-    TOMCAT_WEBAPPS_PATH="/home/user/Downloads/apache-tomcat-9.0.111/webapps"
+    TOMCAT_WEBAPPS_PATH="/var/lib/tomcat9/webapps"
   }
 
   stages {
@@ -36,19 +36,19 @@ pipeline{
       }
     }
 
-    // stage('Build'){
-    //   steps{
-    //     sh'''
-    //       echo "Compile"
+    stage('Build'){
+      steps{
+        sh'''
+          echo "Compile"
           
-    //       javac -cp "$TOMCAT_HOME/lib/servlet-api.jar" "${JAVA_SERVLET_FILE_LOCATION}/${JAVA_SERVLET_FILENAME}"
-    //       if [ $? -ne 0 ]; then
-    //         echo "Compilation error"
-    //         exit 1
-    //       fi
-    //     '''
-    //   }
-    // }
+          javac -cp "./app/javax.servlet-api-4.0.1.jar" "${JAVA_SERVLET_FILE_LOCATION}/${JAVA_SERVLET_FILENAME}"
+          if [ $? -ne 0 ]; then
+            echo "Compilation error"
+            exit 1
+          fi
+        '''
+      }
+    }
 
     // stage('Deploy'){
     //   steps{
