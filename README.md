@@ -1,2 +1,2 @@
 # test
-test app for Allianz
+test app for test
