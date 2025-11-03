@@ -44,8 +44,8 @@ pipeline{
         // Check service availability. Implement retry-pattern
         sh'''
           URL="http://localhost:8080/hello"
-          MAX_RETRY_TIMES=3
-          DELAY_SECONDS=5
+          MAX_RETRY_TIMES=5
+          DELAY_SECONDS=10
 
 
           for i in $(seq 1 $MAX_RETRY_TIMES); do
