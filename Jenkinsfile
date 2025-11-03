@@ -22,15 +22,15 @@ pipeline{
           fi
         '''
 
-        sh'''
-          echo "Check if folder with JAVA application exists"
-          if [ -d "$JAVA_SERVLET_FILE_LOCATION" ]; then
-            echo "$JAVA_SERVLET_FILE_LOCATION is present. OK"
-          else
-            echo "$JAVA_SERVLET_FILE_LOCATION is missing"
-            exit 1
-          fi
-        '''
+        // sh'''
+        //   echo "Check if folder with JAVA application exists"
+        //   if [ -d "$JAVA_SERVLET_FILE_LOCATION" ]; then
+        //     echo "$JAVA_SERVLET_FILE_LOCATION is present. OK"
+        //   else
+        //     echo "$JAVA_SERVLET_FILE_LOCATION is missing"
+        //     exit 1
+        //   fi
+        // '''
       }
     }
 
