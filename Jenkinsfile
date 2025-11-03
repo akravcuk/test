@@ -14,7 +14,7 @@ pipeline{
     stage('Make standard infrastructure checks before build'){
       steps{
         sh'''
-          JAVA_VERSION=$(java -version 2>&1 | perl -ne 'print $1 if /version.*?(\d+)/')
+          JAVA_VERSION=$(java -version 2>&1 | perl -ne 'print $1 if /version.*?(11)/')
 
           if [ "$JAVA_VERSION" != "$JAVA_VERSION_REQUIRED" ]; then
             echo "Installed Java vesion is: $JAVA_VERSION. Required: JAVA_VERSION_REQUIRED"
