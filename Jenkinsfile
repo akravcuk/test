@@ -2,6 +2,7 @@ pipeline{
   agent any
 
   environment {
+    JAVA_VERSION_REQUIRED = "11"
     JAVA_SERVLET_FILE_LOCATION = "./app/hello-tomcat/WEB-INF/classes"
     JAVA_SERVLET_FILENAME = "HelloServlet.java"
     JAVA_APP_WAR_FILENAME = "hello.war"
@@ -13,10 +14,10 @@ pipeline{
     stage('Make standard infrastructure checks before build'){
       steps{
         sh'''
-          JAVA_VERSION=$(java -version 2>&1 | perl -ne 'print $1 if /version.*?(21)/')
+          JAVA_VERSION=$(java -version 2>&1 | perl -ne 'print $1 if /version.*?(\d+)/')
 
-          if [ "$JAVA_VERSION" != "21" ]; then
-            echo "Installed Java vesion is: $JAVA_VERSION. Required: 21"
+          if [ "$JAVA_VERSION" != "$JAVA_VERSION_REQUIRED" ]; then
+            echo "Installed Java vesion is: $JAVA_VERSION. Required: JAVA_VERSION_REQUIRED"
             exit 1
           else
             echo "Installed Java vesion is: $JAVA_VERSION and this is compliant. Continue"
