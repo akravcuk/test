@@ -56,6 +56,7 @@ pipeline{
           else
             mkdir $SERVLET_FULL_NAME
             cp -r ./app/hello-tomcat/* $SERVLET_FULL_NAME/
+          fi
         '''
       }
     }
