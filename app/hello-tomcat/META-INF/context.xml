@@ -1,0 +1,3 @@
+<Context>
+    <Environment name="maintenance" type="java.lang.Boolean" value="true" override="false"/>
+</Context>
