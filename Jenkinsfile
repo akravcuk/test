@@ -34,7 +34,7 @@ pipeline{
             rm -rf "$SERVLET_FULL_NAME"
           fi
 
-          if [ !-d "$SERVLET_FULL_NAME" ]; then
+          if [ ! -d "$SERVLET_FULL_NAME" ]; then
             mkdir $SERVLET_FULL_NAME
           else
             echo "Can't create servlet directory: $SERVLET_FULL_NAME"
