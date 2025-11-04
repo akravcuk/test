@@ -31,7 +31,7 @@ pipeline{
           SERVLET_FULL_NAME="$TOMCAT_WEBAPPS_PATH/$SERVLET_FOLDER_NAME"
 
           if [ -d "$SERVLET_FULL_NAME" ]; then
-            rm -rf $SERVLET_FULL_NAME"
+            rm -rf "$SERVLET_FULL_NAME"
           fi
 
           if [ !-d "$SERVLET_FULL_NAME" ]; then
