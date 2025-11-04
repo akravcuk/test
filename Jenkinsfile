@@ -29,12 +29,20 @@ pipeline{
       steps{
         sh'''
           SERVLET_FULL_NAME="$TOMCAT_WEBAPPS_PATH/$SERVLET_FOLDER_NAME"
+
           if [ -d "$SERVLET_FULL_NAME" ]; then
-            rm -rf $SERVLET_FULL_NAME" && mkdir $SERVLET_FULL_NAME"
-          else
-            mkdir $SERVLET_FULL_NAME
-            cp -r ./app/hello-tomcat/* $SERVLET_FULL_NAME/
+            rm -rf $SERVLET_FULL_NAME"
           fi
+
+          if [ !-d "$SERVLET_FULL_NAME" ]; then
+            mkdir $SERVLET_FULL_NAME
+          else
+            echo "Can't create servlet directory: $SERVLET_FULL_NAME"
+            exit 1
+          fi
+
+          cp -r ./app/hello-tomcat/* $SERVLET_FULL_NAME/
+          
         '''
       }
     }
