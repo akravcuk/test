@@ -18,7 +18,7 @@ if (Boolean.TRUE.equals(maintenance)) {
 
 	<!doctype html><meta charset="utf-8">
 	<title>OK</title>
-	<h1>It works (Tomcat)</h1>
+	<h1>Hello Tomcat</h1>
 <%
 }
 %>
